@@ -21,6 +21,6 @@ RUN pnpm build
 
 # Expose the port Next.js is running on (usually 3000)
 EXPOSE 3000
-
+#
 # Start the Next.js app
 CMD ["pnpm", "start"]
