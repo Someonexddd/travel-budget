@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Install pnpm globally
-RUN npm install -g pnpm@latest-2
+RUN npm install -g pnpm
 
 # Set the working directory inside the container
 WORKDIR /app
