@@ -1,26 +1,26 @@
 # Use the official Node.js image as the base image
 FROM node
 
-# Install pnpm globally
+# Install pnpm globally (if you prefer to use npm, it's already included in Node.js image)
 RUN npm install -g pnpm
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json, pnpm-lock.yaml, and the rest of the application code
-COPY package.json pnpm-lock.yaml ./
-COPY public ./public
-COPY src ./src
-COPY tsconfig.json ./
+# Copy package.json and package-lock.json to install dependencies
+COPY package.json package-lock.json ./
 
-# Install dependencies using pnpm
-RUN pnpm install --frozen-lockfile
+# Install dependencies using npm
+RUN npm install
 
-# Build the Next.js app
-RUN pnpm build
+# Copy the rest of the application code
+COPY . .
 
-# Expose the port Next.js is running on (usually 3000)
+# Build the React app (replace 'npm run build' with your build command if needed)
+RUN npm run build
+
+# Expose the port where the React app will run (usually 3000)
 EXPOSE 3000
-#
-# Start the Next.js app
-CMD ["pnpm", "start"]
+
+# Command to run the React app
+CMD ["npm", "start"]
