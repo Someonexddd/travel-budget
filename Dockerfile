@@ -1,8 +1,8 @@
 # Use the official Node.js image as the base image
-FROM node:14-alpine
+FROM node:20-alpine
 
 # Install pnpm globally
-RUN npm install -g pnpm
+RUN npm install -g pnpm@latest-2
 
 # Set the working directory inside the container
 WORKDIR /app
